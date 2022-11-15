@@ -1,13 +1,13 @@
 import { View, Text, Pressable } from "react-native";
 import React, { useContext } from "react";
 import UserContext from "../userContext";
-import { getAuth } from "firebase/auth";
+import { auth } from "./Form";
 import { styles } from "../styles/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const auth = getAuth();
 const Home = () => {
   const { user, setUser } = useContext(UserContext);
+
   const logout = () => {
     auth
       .signOut()
@@ -26,7 +26,6 @@ const Home = () => {
   };
   return (
     <View style={styles.container}>
-      <Text>Bienvenido a Native Pelis{user.name}</Text>
       <Pressable
         style={[styles.button, styles.bgRebeccaPurple]}
         onPress={logout}

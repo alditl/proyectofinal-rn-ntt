@@ -20,13 +20,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {
-    borderRadius: 10,
-    marginTop: 25,
-    padding: 10,
-    alignItems: "center",
-    width: 350,
-  },
+  // button: {
+  //   borderRadius: 10,
+  //   marginTop: 25,
+  //   padding: 10,
+  //   alignItems: "center",
+  //   width: 350,
+  // },
   bgPowderBlue: {
     backgroundColor: "powderblue",
   },
@@ -47,20 +47,20 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
   },
-  button_createUser: {
+  button: {
     width: 350,
     borderRadius: 2,
     marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
-    fontSize: 18,
+    fontSize: 20,
     textAlign: "center",
     height: 40,
     backgroundColor: "midnightblue",
     color: "white",
   },
 
-  button_haveAccount: {
+  button_2: {
     marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -80,6 +80,12 @@ export const styles = StyleSheet.create({
     color: "black",
     borderBottomColor: "black",
     borderBottomWidth: 2,
+  },
+  title_forms: {
+    fontSize: 28,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 80,
   },
 
   error: {

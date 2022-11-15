@@ -1,11 +1,12 @@
 import Home from "./src/screens/Home";
 import Form from "./src/screens/Form";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import UserContext from "./src/userContext";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import UserContext from "./src/userContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ForgotPassword from "./src/screens/ForgotPassword";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -44,15 +45,20 @@ export default function App() {
             <Stack.Screen
               name="Home"
               component={Home}
-              options={{ title: "Inicio" }}
+              options={{ title: `Bienvenido ${user.name}` }}
             />
           ) : (
             <Stack.Screen
               name="Form"
               component={Form}
-              options={{ title: "Formik & Yup" }}
+              options={{ title: "Native Pelis" }}
             />
           )}
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{ title: "Olvidaste tu contrasena" }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </UserContext.Provider>

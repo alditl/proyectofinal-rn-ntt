@@ -24,7 +24,7 @@ import { MaterialIcons, Feather, AntDesign } from "@expo/vector-icons";
 import UserContext from "../userContext";
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const Form = () => {
   const navigation = useNavigation();
   const { user, setUser } = useContext(UserContext);
@@ -101,82 +101,89 @@ const Form = () => {
       }) => (
         <View style={styles.container}>
           {isNewUser ? (
+            <>
+              <Text style={styles.title_forms}>Crea tu cuenta </Text>
+              {errors.name && touched.name && (
+                <Text style={styles.error}>{errors.name}</Text>
+              )}
+              <View style={styles.inputWithIcon}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Ingrese su nombre..."
+                  placeholderTextColor={"darkslategray"}
+                  onChangeText={handleChange("name")}
+                  name="name"
+                  value={values.name}
+                  textAlignVertical="bottom"
+                />
+                <AntDesign name="user" size={24} color="black" />
+              </View>
+            </>
+          ) : null}
+          <>
+            {!isNewUser ? (
+              <Text style={styles.title_forms}>Iniciar sesion</Text>
+            ) : null}
+
+            {errors.email && touched.email && (
+              <Text style={styles.error}>{errors.email}</Text>
+            )}
             <View style={styles.inputWithIcon}>
               <TextInput
                 style={styles.input}
-                placeholder="Ingrese su nombre..."
+                placeholder="Ingrese email..."
                 placeholderTextColor={"darkslategray"}
-                onChangeText={handleChange("name")}
-                name="name"
-                value={values.name}
+                onChangeText={handleChange("email")}
+                name="email"
+                value={values.email}
                 textAlignVertical="bottom"
               />
-              <AntDesign name="user" size={24} color="black" />
+              <MaterialIcons name="alternate-email" size={24} />
             </View>
-          ) : null}
-          {errors.email && touched.email && (
-            <Text style={styles.error}>{errors.email}</Text>
-          )}
-          <View style={styles.inputWithIcon}>
-            <TextInput
-              style={styles.input}
-              placeholder="Ingrese email..."
-              placeholderTextColor={"darkslategray"}
-              onChangeText={handleChange("email")}
-              name="email"
-              value={values.email}
-              textAlignVertical="bottom"
-            />
-            <MaterialIcons name="alternate-email" size={24} />
-          </View>
 
-          {errors.password && touched.password && (
-            <Text style={styles.error}>{errors.password}</Text>
-          )}
-          <View style={styles.inputWithIcon}>
-            <TextInput
-              style={styles.input}
-              placeholder="Ingrese contraseña..."
-              placeholderTextColor={"darkslategray"}
-              onChangeText={handleChange("password")}
-              name="password"
-              value={values.password}
-              textAlignVertical="bottom"
-              secureTextEntry={isVisible}
-            />
-            <Pressable onPress={() => setIsVisible(!isVisible)}>
-              <Feather name={isVisible ? "eye-off" : "eye"} size={24} />
-            </Pressable>
-          </View>
-          <TouchableHighlight
-            style={styles.button_createUser}
-            onPress={handleSubmit}
-          >
-            {isNewUser ? (
-              <Text style={styles.button_createUser}>Crear cuenta</Text>
-            ) : (
-              <Text style={styles.button_createUser}>Ingresar</Text>
+            {errors.password && touched.password && (
+              <Text style={styles.error}>{errors.password}</Text>
             )}
-          </TouchableHighlight>
-
-          <TouchableHighlight onPress={() => setIsNewUser((prev) => !prev)}>
-            {isNewUser ? (
-              <Text style={styles.button_haveAccount}>Ya tengo una cuenta</Text>
-            ) : (
-              <Text style={styles.button_haveAccount}>
-                Quiero crear una cuenta
-              </Text>
-            )}
-          </TouchableHighlight>
-          {!isNewUser ? (
-            <TouchableHighlight
-              onPress={() => navigation.navigate("ForgotPassword")}
-            >
-              <Text style={styles.button_forgotpassword}>
-                Recuperar contrasena
-              </Text>
+            <View style={styles.inputWithIcon}>
+              <TextInput
+                style={styles.input}
+                placeholder="Ingrese contraseña..."
+                placeholderTextColor={"darkslategray"}
+                onChangeText={handleChange("password")}
+                name="password"
+                value={values.password}
+                textAlignVertical="bottom"
+                secureTextEntry={isVisible}
+              />
+              <Pressable onPress={() => setIsVisible(!isVisible)}>
+                <Feather name={isVisible ? "eye-off" : "eye"} size={24} />
+              </Pressable>
+            </View>
+            <TouchableHighlight style={styles.button} onPress={handleSubmit}>
+              {isNewUser ? (
+                <Text style={styles.button}>Crear cuenta</Text>
+              ) : (
+                <Text style={styles.button}>Ingresar</Text>
+              )}
             </TouchableHighlight>
-          ) : null}
+
+            <TouchableHighlight onPress={() => setIsNewUser((prev) => !prev)}>
+              {isNewUser ? (
+                <Text style={styles.button_2}>Ya tengo una cuenta</Text>
+              ) : (
+                <Text style={styles.button_2}>Quiero crear una cuenta</Text>
+              )}
+            </TouchableHighlight>
+            {!isNewUser ? (
+              <TouchableHighlight
+                onPress={() => navigation.navigate("ForgotPassword")}
+              >
+                <Text style={styles.button_forgotpassword}>
+                  Recuperar contrasena
+                </Text>
+              </TouchableHighlight>
+            ) : null}
+          </>
         </View>
       )}
     </Formik>
