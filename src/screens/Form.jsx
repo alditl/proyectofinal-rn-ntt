@@ -24,7 +24,8 @@ import { MaterialIcons, Feather, AntDesign } from "@expo/vector-icons";
 import UserContext from "../userContext";
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const auth = getAuth();
+
 const Form = () => {
   const navigation = useNavigation();
   const { user, setUser } = useContext(UserContext);
@@ -43,29 +44,18 @@ const Form = () => {
     return subscriber; //unsubscribe on unmount
   }, []);
 
-  const handleRegister = async (values) => {
-    try {
-      const createUser = createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-      console.log(createUser);
-      await setUser((prev) => ({
-        ...prev,
-        name: values.name,
-        email: values.email,
-      }));
-      storeUser(values.email);
-    } catch (error) {
-      alert(error);
-    }
+  const handleRegister = (values) => {
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredentials) => {
+        setUser((prev) => ({ ...prev, email: values.email }));
+        storeUser(values.email);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleLogin = (values) => {
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredentials) => {
-        console.log(userCredentials);
         setUser((prev) => ({ ...prev, email: values.email }));
         storeUser(values.email);
       })
@@ -85,20 +75,10 @@ const Form = () => {
 
   return (
     <Formik
-      initialValues={{ name: "", email: "", password: "" }}
+      initialValues={{ email: "", password: "" }}
       validationSchema={loginValidationSchema}
-      onSubmit={(values) => {
-        isNewUser ? handleRegister(values) : handleLogin(values);
-      }}
     >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values,
-        errors,
-        touched,
-      }) => (
+      {({ handleChange, values, errors, touched }) => (
         <View style={styles.container}>
           {isNewUser ? (
             <>
@@ -159,13 +139,18 @@ const Form = () => {
                 <Feather name={isVisible ? "eye-off" : "eye"} size={24} />
               </Pressable>
             </View>
-            <TouchableHighlight style={styles.button} onPress={handleSubmit}>
-              {isNewUser ? (
+            {isNewUser ? (
+              <TouchableHighlight
+                style={styles.button}
+                onPress={() => handleRegister(values)}
+              >
                 <Text style={styles.button}>Crear cuenta</Text>
-              ) : (
+              </TouchableHighlight>
+            ) : (
+              <TouchableHighlight onPress={() => handleLogin(values)}>
                 <Text style={styles.button}>Ingresar</Text>
-              )}
-            </TouchableHighlight>
+              </TouchableHighlight>
+            )}
 
             <TouchableHighlight onPress={() => setIsNewUser((prev) => !prev)}>
               {isNewUser ? (
