@@ -1,14 +1,23 @@
 import { View, Text, Pressable } from "react-native";
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import UserContext from "../userContext";
-import { auth } from "./Form";
 import { styles } from "../styles/styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useGet } from "./hooks/useGet"
+
 
 const Home = () => {
+  const [data, isLoading, error] = useGet('tt0120338')
+
+
   return (
     <View style={styles.container}>
-      <Text>Aca van las pelis</Text>
+      {data && !isLoading && (
+        <Text>
+
+          {data.Title}
+        </Text>
+      )
+      }
     </View>
   );
 };

@@ -18,6 +18,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 // const Stack = createNativeStackNavigator();
 export default function App() {
+
   const [user, setUser] = useState({ email: "" });
 
   const getUserFromAsyncStorage = async () => {
