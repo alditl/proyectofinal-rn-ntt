@@ -1,25 +1,22 @@
 import { View, Text, Pressable } from "react-native";
-import React, { useEffect, useState } from "react";
-import UserContext from "../userContext";
-import { styles } from "../styles/styles";
-import { useGet } from "./hooks/useGet"
+import React, { useContext } from "react";
+import TrendingMovies from "./TrendingMovies";
+import DiscoverMovies from "./DiscoverMovies";
+import Styles from "../Styles";
 
-
-const Home = () => {
-  const [data, isLoading, error] = useGet('tt0120338')
-
-
+const Home = (props) => {
   return (
-    <View style={styles.container}>
-      {data && !isLoading && (
-        <Text>
-
-          {data.Title}
-        </Text>
-      )
-      }
+    <View style={[Styles.container, Styles.sectionBg]}>
+      <DiscoverMovies />
+      <TrendingMovies
+        title="Trending Movies"
+        url="/movie/top_rated"
+        navigation={props.navigation}
+      />
     </View>
   );
 };
 
 export default Home;
+
+
