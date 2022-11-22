@@ -11,12 +11,12 @@ import ForgotPassword from "./src/screens/ForgotPassword";
 import { AntDesign, SimpleLineIcons, MaterialIcons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import LogOut from "./src/screens/LogOut";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import MovieDetail from "./src/screens/MovieDetail";
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
-// const Stack = createNativeStackNavigator();
+
 export default function App() {
   const [user, setUser] = useState({ email: "" });
 
@@ -62,6 +62,7 @@ export default function App() {
                   headerShown: false,
                 }}
               />
+
               <Tab.Screen
                 name="LogOut"
                 component={LogOut}
@@ -72,6 +73,12 @@ export default function App() {
                   ),
                 }}
               />
+              <Stack.Screen
+                name="movieDetail"
+                component={MovieDetail}
+                options={{ headerShown: false }}
+              />
+
               <Tab.Screen
                 name="Favoritos"
                 component={Favoritos}
