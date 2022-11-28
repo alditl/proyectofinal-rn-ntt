@@ -13,7 +13,7 @@ Creada por Aldana Torres y Naomi Del Castillo
 
 ## AUTENTICACIÓN ##
 
->Se realizó el login a traves de la autenticación con Firebase.
+> El formulario de login/crear usuario se realizó con Formik, para las validaciones se utilizó Yup, para el sistema de autenticación se utilizó Firebase y para guardar los datos AsyncStorage.
 
 ## COMENTARIOS ##
 

@@ -1,6 +1,5 @@
 import Home from "./src/screens/Home";
 import Form from "./src/screens/Form";
-import Favoritos from "./src/screens/Favoritos";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "./src/userContext";
 
