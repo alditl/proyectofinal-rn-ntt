@@ -1,3 +1,10 @@
+/*
+Este fue uno de nuestros traspies al momento de configurar la API. 
+Se usó GET en esta oportunidad, intentando captar n cantidad de resultados y no funcionó
+por lo que luego se utilizó el método GET 
+
+
+
 import { useEffect, useState } from "react";
 
 const apiurl = "https://www.omdbapi.com/?i=${endpoint}&apikey=c947d3c4";
@@ -29,3 +36,4 @@ export const useGet = (endpoint) => {
 
     return [data, isLoading, error];
   };
+*/

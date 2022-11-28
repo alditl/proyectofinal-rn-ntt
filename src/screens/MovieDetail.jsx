@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, Linking, } from "react-native";
 import React, { useState, useEffect } from "react";
 import { IMAGE_POSTER_URL } from "../Config";
 import { GET } from "../Services/API";

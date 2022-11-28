@@ -74,23 +74,19 @@ export default function App() {
                   ),
                 }}
               />
-              <Stack.Screen
+              {/*<Stack.Screen
                 name="movieDetail"
                 component={MovieDetail}
                 options={{ headerShown: false }}
-              />
+              />*/}
 
               <Tab.Screen
-                name="Favoritos"
-                component={Favoritos}
+                name="movieDetail"
+                component={MovieDetail}
                 options={{
-                  title: "Fav",
+                  title: "Movie Detail",
                   tabBarIcon: ({ color, size }) => (
-                    <MaterialIcons
-                      name="favorite-border"
-                      size={28}
-                      color={color}
-                    />
+                    <AntDesign name="profile" size={24} color={color} />
                   ),
                   headerShown: false,
                 }}
@@ -101,12 +97,18 @@ export default function App() {
               <Stack.Screen
                 name="Form"
                 component={Form}
-                options={{ title: "Native Pelis" }}
+                options={{ title: "Native Pelis", 
+                tabBarIcon: ({ color, size }) => (
+                  <AntDesign name="camera" size={24} color={color} />
+                ),}}
               />
               <Stack.Screen
                 name="ForgotPassword"
                 component={ForgotPassword}
-                options={{ title: "Olvidaste tu contrasena" }}
+                options={{ title: "Olvidaste tu contrasena", 
+                tabBarIcon: ({ color, size }) => (
+                  <AntDesign name="questioncircleo" size={24} color={color} />
+                ),}}
               />
             </>
           )}
